@@ -1,0 +1,3 @@
+name,email,phone,location,skills,current_title,years_experience
+Ada Lovelace,ADA@example.com,(415) 555-2671,"San Francisco, United States","Python;CPP;ReactJS",Senior Software Engineer,8
+Grace Hopper,grace@example.org,+1 202-555-0187,"Arlington, USA","Python;Postgres",Computer Scientist,12

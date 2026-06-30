@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/candidate-profile-v1.json",
+  "title": "Candidate Profile Collection",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "candidate_id", "full_name", "emails", "phones", "location", "links",
+      "headline", "years_experience", "skills", "experience", "education",
+      "provenance", "confidence", "overall_confidence"
+    ],
+    "properties": {
+      "candidate_id": {"type": "string", "pattern": "^cand_[0-9a-f]{32}$"},
+      "full_name": {"type": ["string", "null"]},
+      "emails": {"type": "array", "uniqueItems": true, "items": {"type": "string", "format": "email"}},
+      "phones": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^\\+[1-9][0-9]{7,14}$"}},
+      "location": {"anyOf": [{"$ref": "#/$defs/location"}, {"type": "null"}]},
+      "links": {"$ref": "#/$defs/links"},
+      "headline": {"type": ["string", "null"]},
+      "years_experience": {"type": ["number", "null"], "minimum": 0},
+      "skills": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+      "experience": {"type": "array", "items": {"$ref": "#/$defs/experience"}},
+      "education": {"type": "array", "items": {"$ref": "#/$defs/education"}},
+      "provenance": {"type": "object", "additionalProperties": {"type": "array", "items": {"$ref": "#/$defs/provenance"}}},
+      "confidence": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}},
+      "overall_confidence": {"type": "number", "minimum": 0, "maximum": 1}
+    }
+  },
+  "$defs": {
+    "location": {
+      "type": "object", "additionalProperties": false,
+      "required": ["city", "region", "country"],
+      "properties": {
+        "city": {"type": ["string", "null"]}, "region": {"type": ["string", "null"]},
+        "country": {"type": ["string", "null"], "pattern": "^[A-Z]{2}$"}
+      }
+    },
+    "links": {
+      "type": "object", "additionalProperties": false,
+      "required": ["linkedin", "github", "portfolio"],
+      "properties": {
+        "linkedin": {"type": ["string", "null"]}, "github": {"type": ["string", "null"]},
+        "portfolio": {"type": ["string", "null"]}
+      }
+    },
+    "experience": {
+      "type": "object", "additionalProperties": false,
+      "required": ["company", "title", "start_date", "end_date", "description"],
+      "properties": {
+        "company": {"type": "string"}, "title": {"type": ["string", "null"]},
+        "start_date": {"type": ["string", "null"], "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"},
+        "end_date": {"type": ["string", "null"], "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"},
+        "description": {"type": ["string", "null"]}
+      }
+    },
+    "education": {
+      "type": "object", "additionalProperties": false,
+      "required": ["institution", "degree", "field_of_study", "start_date", "end_date"],
+      "properties": {
+        "institution": {"type": "string"}, "degree": {"type": ["string", "null"]},
+        "field_of_study": {"type": ["string", "null"]},
+        "start_date": {"type": ["string", "null"], "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"},
+        "end_date": {"type": ["string", "null"], "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"}
+      }
+    },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source", "source_id", "extraction_method", "original_field", "value"],
+      "properties": {
+        "source": {"enum": ["resume", "linkedin", "ats", "csv", "github"]},
+        "source_id": {"type": "string"}, "extraction_method": {"type": "string"},
+        "original_field": {"type": ["string", "null"]}, "value": {}
+      }
+    }
+  }
+}

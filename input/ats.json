@@ -1,0 +1,31 @@
+{
+  "candidates": [
+    {
+      "id": "ATS-1042",
+      "full_name": "Dr. Ada Lovelace",
+      "email": "ada@example.com",
+      "phone": "+1 415 555 2671",
+      "location": {"city": "San Francisco", "country": "USA"},
+      "linkedin_url": "linkedin.com/in/ada-lovelace",
+      "skills": ["JavaScript", "Machine Learning"],
+      "experience_years": 8,
+      "experience": [
+        {
+          "company": "Analytical Engines Inc.",
+          "title": "Senior Software Engineer",
+          "start_date": "January 2018",
+          "end_date": "present",
+          "description": "Built reliable data platforms."
+        }
+      ],
+      "education": [
+        {
+          "institution": "University of London",
+          "degree": "BSc",
+          "field": "Mathematics",
+          "end_date": "2015-06-01"
+        }
+      ]
+    }
+  ]
+}
