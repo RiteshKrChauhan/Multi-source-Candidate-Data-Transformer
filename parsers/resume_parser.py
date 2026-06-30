@@ -108,7 +108,7 @@ class ResumeParser(BaseParser):
 
     @staticmethod
     def _experience_line(line: str) -> dict[str, str] | None:
-        parts = [part.strip() for part in re.split(r"\s+(?:—|–|\|)\s+", line) if part.strip()]
+        parts = [part.strip() for part in re.split(r"\s+(?:—|–|-|\|)\s+", line) if part.strip()]
         if len(parts) < 2:
             return None
         result = {"company": parts[0], "title": parts[1]}
@@ -124,7 +124,7 @@ class ResumeParser(BaseParser):
 
     @staticmethod
     def _education_line(line: str) -> dict[str, str] | None:
-        parts = [part.strip() for part in re.split(r"\s+(?:—|–|\|)\s+", line) if part.strip()]
+        parts = [part.strip() for part in re.split(r"\s+(?:—|–|-|\|)\s+", line) if part.strip()]
         if not parts or len(parts[0]) < 2:
             return None
         result = {"institution": parts[0]}

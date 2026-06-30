@@ -91,12 +91,12 @@ Python 3.11 and 3.12 are supported by the declared dependency ranges.
 
 **Default output (all fields, full provenance + confidence):**
 ```bash
-python main.py --csv input/candidates.csv --resume input/resume.txt --ats input/ats.json --config config/default.json --output output/candidates.json
+python main.py --csv input/candidates.csv --resume input/resume.pdf --ats input/ats.json --config config/default.json --output output/candidates.json
 ```
 
 **Compact custom-config output (renamed fields, no metadata, omit-missing policy):**
 ```bash
-python main.py --csv input/candidates.csv --resume input/resume.txt --ats input/ats.json --config config/compact.json --output output/compact_output.json
+python main.py --csv input/candidates.csv --resume input/resume.pdf --ats input/ats.json --config config/compact.json --output output/compact_output.json
 ```
 
 Each input flag is repeatable — supply as many files as needed. National phone numbers are parsed against the US region by default:
